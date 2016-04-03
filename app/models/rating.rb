@@ -1,4 +1,6 @@
 class Rating < ActiveRecord::Base
-  has_one :reviewer, class_name: "User"
-  has_one :reviewed, class_name: "User"
+  belongs_to :user
+  belongs_to :reviewer, class_name: "User"
+  alias_attribute :reviewer_id, :user_id
+
 end

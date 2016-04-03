@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
   has_one :exchange
-  belongs_to :supplier, class_name: "User"
+  belongs_to :user
   has_one :location
 end
