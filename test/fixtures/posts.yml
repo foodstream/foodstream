@@ -5,7 +5,7 @@ one:
   details: MyText
   start_at: 2016-04-02 12:27:23
   end_at: 2016-04-02 12:27:23
-  user_id: 1
+  supplier_id: 1
   location_id: 1
 
 two:
@@ -13,5 +13,5 @@ two:
   details: MyText
   start_at: 2016-04-02 12:27:23
   end_at: 2016-04-02 12:27:23
-  user_id: 1
+  supplier_id: 1
   location_id: 1

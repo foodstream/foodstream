@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402182958) do
+ActiveRecord::Schema.define(version: 20160403140106) do
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "claimant_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160402182958) do
     t.text     "details"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.integer  "user_id"
+    t.integer  "supplier_id"
     t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
