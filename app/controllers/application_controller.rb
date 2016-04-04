@@ -5,14 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def logged_in?
-    redirect_to sessions_login_path, notice: "You must log in to access this page" #unless params[:token]
+    render json: "Invalid TOKEN" unless params[:token] && User.find_by(token: params[:token])
   end
 
-  protected
-    def authenticate
-      authenticate_with_http_token do |token, options|
-        byebug
-        User.find_by(token: token)
-      end
-    end
 end
