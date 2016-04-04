@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :password, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :token, uniqueness: true
+  validates_uniqueness_of :token, :allow_blank => true, :allow_nil => true
 
   has_many :posts, class_name: "Post", foreign_key: "supplier_id"
   has_many :exchanges, class_name: "Exchange", foreign_key: "claimant_id"
