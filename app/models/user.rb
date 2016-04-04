@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
 
   def generate_token
-    self.token = SecureRandom.hex if token.blank?
+    self.token = SecureRandom.hex if !token
   end
 
   def destroy_token

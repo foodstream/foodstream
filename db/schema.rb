@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404150623) do
+ActiveRecord::Schema.define(version: 20160404205053) do
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "claimant_id"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20160404150623) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "exchange_id"
+    t.integer  "post_id"
     t.text     "body"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20160404150623) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.boolean  "claimed"
+    t.boolean  "completed"
+    t.integer  "claimant_id"
   end
 
   create_table "ratings", force: :cascade do |t|

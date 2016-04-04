@@ -27,15 +27,12 @@ post2 = Post.create(title: "Fresh produce", details: "12 lbs of arugula", start_
 post3 = Post.create(title: "Catering leftovers", details: "3 trays of mashed potatoes and 2 trays of brisket", start_at: "2015-3-12 2:25PM", end_at: "2015-3-12 3:25PM", supplier_id: user5.id, location_id: location6.id)
 post4 = Post.create(title: "Misc. grocieries", details: "18 boxes of spaghetti", start_at: "2016-5-12 1:25PM", end_at: "2016-6-12 9:25PM", supplier_id: user1.id, location_id: location1.id)
 
-exchange1 = Exchange.create(claimant_id: user3.id, post_id: post1.id, completed: true)
-exchange2 = Exchange.create(claimant_id: user4.id, post_id: post2.id, completed: true)
-exchange3 = Exchange.create(claimant_id: user4.id, post_id: post3.id, completed: true)
 
-message1 = Message.create(exchange_id: exchange1.id, body: "Can you tell me what kind of beans are being offered?")
-message2 = Message.create(exchange_id: exchange1.id, body: "Lima beans all the way.")
-message3 = Message.create(exchange_id: exchange1.id, body: "Great, thanks!")
-message4 = Message.create(exchange_id: exchange3.id, body: "I'm on my way but I'm running 5 minutes late!")
-message5 = Message.create(exchange_id: exchange3.id, body: "No worries - take your time!")
+message1 = Message.create(post_id: post1.id, body: "Can you tell me what kind of beans are being offered?")
+message2 = Message.create(post_id: post1.id, body: "Lima beans all the way.")
+message3 = Message.create(post_id: post1.id, body: "Great, thanks!")
+message4 = Message.create(post_id: post3.id, body: "I'm on my way but I'm running 5 minutes late!")
+message5 = Message.create(post_id: post3.id, body: "No worries - take your time!")
 
 review1 = Rating.create(rating: 4, reviewer_id: user3.id, reviewed_id: user1.id)
 review2 = Rating.create(rating: 5, reviewer_id: user1.id, reviewed_id: user3.id)
@@ -44,4 +41,4 @@ review4 = Rating.create(rating: 5, reviewer_id: user2.id, reviewed_id: user4.id)
 review5 = Rating.create(rating: 2, reviewer_id: user4.id, reviewed_id: user5.id)
 review6 = Rating.create(rating: 5, reviewer_id: user5.id, reviewed_id: user4.id)
 
-User.create!(first_name: "Sue", last_name: "Smith", email: "sue@gmail.com", password_digest: BCrypt::Password.create("monkey"))
+User.create!(first_name: "Sue", last_name: "Smith", email: "sue@gmail.com", password: "monkey")

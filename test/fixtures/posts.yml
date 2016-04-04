@@ -8,6 +8,8 @@ one:
   supplier_id: 1
   location_id: 1
   claimed: false
+  completed: false
+
 
 
 two:
@@ -18,3 +20,4 @@ two:
   supplier_id: 1
   location_id: 1
   claimed: false
+  completed: false
