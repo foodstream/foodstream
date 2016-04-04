@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
@@ -50,3 +43,5 @@ review3 = Rating.create(rating: 3, reviewer_id: user4.id, reviewed_id: user2.id)
 review4 = Rating.create(rating: 5, reviewer_id: user2.id, reviewed_id: user4.id)
 review5 = Rating.create(rating: 2, reviewer_id: user4.id, reviewed_id: user5.id)
 review6 = Rating.create(rating: 5, reviewer_id: uesr5.id, reviewed_id: user4.id)
+
+User.create!(first_name: "Sue", last_name: "Smith", email: "sue@gmail.com", password_digest: BCrypt::Password.create("monkey"))

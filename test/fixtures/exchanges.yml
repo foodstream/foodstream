@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  claimant_id: 1
   post_id: 1
   completed: false
 
-two:
-  claimant_id: 1
+two: 
   post_id: 1
   completed: false

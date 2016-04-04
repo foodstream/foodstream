@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'byebug'
 
 class PostTest < ActiveSupport::TestCase
   test "post belongs to a supplier" do
