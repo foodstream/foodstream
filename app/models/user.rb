@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   has_many :ratings
 
   has_secure_password
+
+  before_validation do
+    self.token = SecureRandom.hex if token.blank?
+  end
 end

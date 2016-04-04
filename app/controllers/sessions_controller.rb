@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
   def login
-    if !session[:user_id]
+    if !params[:token]
       user = User.find_by_email(params[:email])
       if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        redirect_to posts_path, notice: "You have succesfully logged in!"
+        render json: user
+        # redirect_to posts_path, notice: "You have succesfully logged in!"
       else
         if user
           flash.now[:alert] = "Login failed: invalid email or password."

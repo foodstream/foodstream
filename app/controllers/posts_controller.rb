@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in?
+  before_action :authenticate
 
 
   # GET /posts
   # GET /posts.json
   def index
+    byebug
     @posts = Post.all
   end
 

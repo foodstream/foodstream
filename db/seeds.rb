@@ -7,11 +7,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user1 = User.create(first_name: "Bob", last_name: "Ingles", password: "password", email: "bob@bob.com", company: "Ingles grocery store", location_id: location1.id, description: "Ingles manager")
-user2 = User.create(first_name: "Harris", last_name: "Teeter", password: "password", email: "ht@ht.com", company: "Harris Teeter", location_id: location2.id, description: "Harris Teeter manager")
-user3 = User.create(first_name: "Jane", last_name: "Doe", password: "password", email: "jane@jane.com", company: "UNC Office of Sustainability", location_id: location3.id, description: "Head of department")
-user4 = User.create(first_name: "Patti", last_name: "Mayo", password: "password", email: "patti@patti.com", company: "Durham Foodbank", location_id: location4.id, description: "Director")
-user5 = User.create(first_name: "Susie", last_name: "Q", password: "password", email: "susie@susie.com", company: "Whimsical Weddings Catering", description: "Owner")
 
 
 location1 = Location.create(address_1: "123 Main Street", city: "Asheville", state: "NC", zip_code: "28806", nickname: "Ingles")
@@ -21,6 +16,11 @@ location4 = Location.create(address_1: "111 Chapel Hill BLVD", address_2: "Unit 
 location5 = Location.create(address_1: "222 Fayetteville St", address_2: "Suite 100", city: "Durham", state: "NC", zip_code: "27707", nickname: "Foodbank branch 2")
 location6 = Location.create(address_1: "333 Venue Avenue", city: "Durham", state: "NC", zip_code: "27701", nickname: "Wedding venue")
 
+user1 = User.create(first_name: "Bob", last_name: "Ingles", password: "password", email: "bob@bob.com", company: "Ingles grocery store", location_id: location1.id, description: "Ingles manager")
+user2 = User.create(first_name: "Harris", last_name: "Teeter", password: "password", email: "ht@ht.com", company: "Harris Teeter", location_id: location2.id, description: "Harris Teeter manager")
+user3 = User.create(first_name: "Jane", last_name: "Doe", password: "password", email: "jane@jane.com", company: "UNC Office of Sustainability", location_id: location3.id, description: "Head of department")
+user4 = User.create(first_name: "Patti", last_name: "Mayo", password: "password", email: "patti@patti.com", company: "Durham Foodbank", location_id: location4.id, description: "Director")
+user5 = User.create(first_name: "Susie", last_name: "Q", password: "password", email: "susie@susie.com", company: "Whimsical Weddings Catering", description: "Owner")
 
 post1 = Post.create(title: "Canned goods", details: "300 cans of beans", start_at: "2013-11-22 2:25PM", end_at: "2013-11-29 2:25PM", supplier_id: user1.id, location_id: location1.id)
 post2 = Post.create(title: "Fresh produce", details: "12 lbs of arugula", start_at: "2014-10-12 12:25PM", end_at: "2014-10-13 2:25PM", supplier_id: user2.id, location_id: location2.id)
@@ -42,6 +42,6 @@ review2 = Rating.create(rating: 5, reviewer_id: user1.id, reviewed_id: user3.id)
 review3 = Rating.create(rating: 3, reviewer_id: user4.id, reviewed_id: user2.id)
 review4 = Rating.create(rating: 5, reviewer_id: user2.id, reviewed_id: user4.id)
 review5 = Rating.create(rating: 2, reviewer_id: user4.id, reviewed_id: user5.id)
-review6 = Rating.create(rating: 5, reviewer_id: uesr5.id, reviewed_id: user4.id)
+review6 = Rating.create(rating: 5, reviewer_id: user5.id, reviewed_id: user4.id)
 
 User.create!(first_name: "Sue", last_name: "Smith", email: "sue@gmail.com", password_digest: BCrypt::Password.create("monkey"))
