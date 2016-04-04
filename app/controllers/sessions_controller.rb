@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    byebug
     user = User.find_by_token(params[:token])
     if user
       user.destroy_token
