@@ -11,7 +11,7 @@
 <%= yield %>
 
 <div >
-  <% if session[:user_id] %>
+  <% if params[:token] %>
     <%= link_to "Logout", { controller: "sessions", action: "logout" } %>
   <% else %>
     <%= link_to "Logout", { controller: "sessions", action: "login" } %>

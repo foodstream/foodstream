@@ -6,7 +6,12 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  before_validation do
+
+  def generate_token
     self.token = SecureRandom.hex if token.blank?
+  end
+
+  def destroy_token
+    self.token = nil
   end
 end

@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
     if !params[:token]
       user = User.find_by_email(params[:email])
       if user && user.authenticate(params[:password])
+        user.generate_token
+        user.save
         render json: user
         # redirect_to posts_path, notice: "You have succesfully logged in!"
       else
@@ -23,7 +25,12 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
+    byebug
+    user = User.find_by_token(params[:token])
+    if user
+      user.destroy_token
+      user.save
+    end
     redirect_to sessions_login_path, notice: "See you next time!"
   end
 
