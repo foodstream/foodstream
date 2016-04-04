@@ -10,5 +10,12 @@
 
 <%= yield %>
 
+<div >
+  <% if session[:user_id] %>
+    <%= link_to "Logout", { controller: "sessions", action: "logout" } %>
+  <% else %>
+    <%= link_to "Logout", { controller: "sessions", action: "login" } %>
+  <% end %>
+</div>
 </body>
 </html>
