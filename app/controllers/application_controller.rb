@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
 
   protected
     def authenticate
-      authenticate_with_http_token do |token, options|
+      byebug
+      authenticate_or_request_with_http_token do |token, options|
         User.find_by(token: token)
       end
     end
