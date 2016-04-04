@@ -7,6 +7,8 @@ one:
   end_at: 2016-04-02 12:27:23
   supplier_id: 1
   location_id: 1
+  claimed: false
+
 
 two:
   title: MyString
@@ -15,3 +17,4 @@ two:
   end_at: 2016-04-02 12:27:23
   supplier_id: 1
   location_id: 1
+  claimed: false

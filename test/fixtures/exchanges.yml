@@ -3,11 +3,9 @@
 one:
   claimant_id: 1
   post_id: 1
-  claimed: false
   completed: false
 
 two:
   claimant_id: 1
   post_id: 1
-  claimed: false
   completed: false
