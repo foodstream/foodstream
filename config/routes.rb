@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'sessions#login'
   get 'sessions/login'
   post 'sessions/login'
-
+  
   get 'sessions/signup'
 
   get 'sessions/logout'
