@@ -8,6 +8,5 @@ use Rack::Cors do
   end
 end
 
-end
 require ::File.expand_path('../config/environment', __FILE__)
 run Rails.application
