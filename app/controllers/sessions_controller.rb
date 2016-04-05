@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    user = User.find_by_token(params[:token])
+    user = User.find_by(token: params[:token])
     if user
       user.destroy_token
       user.save
