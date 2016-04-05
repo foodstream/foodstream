@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   def login
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      byebug
       user.generate_token
       render json: user
     else
