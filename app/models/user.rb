@@ -12,12 +12,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-
   def generate_token
-    self.token = SecureRandom.hex if !token
+    update_attribute(:token, SecureRandom.hex) if !token
   end
-
   def destroy_token
-    self.token = nil
+    update_attribute(:token, nil)
   end
 end
