@@ -16,11 +16,11 @@ location4 = Location.create(address_1: "111 Chapel Hill BLVD", address_2: "Unit 
 location5 = Location.create(address_1: "222 Fayetteville St", address_2: "Suite 100", city: "Durham", state: "NC", zip_code: "27707", nickname: "Foodbank branch 2")
 location6 = Location.create(address_1: "333 Venue Avenue", city: "Durham", state: "NC", zip_code: "27701", nickname: "Wedding venue")
 
-user1 = User.create(first_name: "Bob", last_name: "Ingles", password: "password", email: "bob@bob.com", company: "Ingles grocery store", location_id: location1.id, description: "Ingles manager")
-user2 = User.create(first_name: "Harris", last_name: "Teeter", password: "password", email: "ht@ht.com", company: "Harris Teeter", location_id: location2.id, description: "Harris Teeter manager")
-user3 = User.create(first_name: "Jane", last_name: "Doe", password: "password", email: "jane@jane.com", company: "UNC Office of Sustainability", location_id: location3.id, description: "Head of department")
-user4 = User.create(first_name: "Patti", last_name: "Mayo", password: "password", email: "patti@patti.com", company: "Durham Foodbank", location_id: location4.id, description: "Director")
-user5 = User.create(first_name: "Susie", last_name: "Q", password: "password", email: "susie@susie.com", company: "Whimsical Weddings Catering", description: "Owner")
+user1 = User.create(first_name: "Bob", last_name: "Ingles", password: "password", email: "bob@bob.com", organization: "Ingles grocery store", location_id: location1.id, description: "Ingles manager")
+user2 = User.create(first_name: "Harris", last_name: "Teeter", password: "password", email: "ht@ht.com", organization: "Harris Teeter", location_id: location2.id, description: "Harris Teeter manager")
+user3 = User.create(first_name: "Jane", last_name: "Doe", password: "password", email: "jane@jane.com", organization: "UNC Office of Sustainability", location_id: location3.id, description: "Head of department")
+user4 = User.create(first_name: "Patti", last_name: "Mayo", password: "password", email: "patti@patti.com", organization: "Durham Foodbank", location_id: location4.id, description: "Director")
+user5 = User.create(first_name: "Susie", last_name: "Q", password: "password", email: "susie@susie.com", organization: "Whimsical Weddings Catering", description: "Owner")
 
 post1 = Post.create(title: "Canned goods", details: "300 cans of beans", start_at: "2013-11-22 2:25PM", end_at: "2013-11-29 2:25PM", supplier_id: user1.id, location_id: location1.id)
 post2 = Post.create(title: "Fresh produce", details: "12 lbs of arugula", start_at: "2014-10-12 12:25PM", end_at: "2014-10-13 2:25PM", supplier_id: user2.id, location_id: location2.id)
