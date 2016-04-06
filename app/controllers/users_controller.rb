@@ -26,16 +26,6 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  def login
-    user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
-      user.generate_token
-      render json: user
-    else
-      render json: "Invalid Email or Password"
-    end
-  end
-
 
   def create
     @user = User.new(user_params)
