@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def logged_in?
-    render json: "Invalid TOKEN" unless params[:token] && User.find_by(token: params[:token])
+    @current_user = User.find_by(token: params[:token])
+    render json: "Invalid TOKEN" unless params[:token] && @current_user
   end
 
 end

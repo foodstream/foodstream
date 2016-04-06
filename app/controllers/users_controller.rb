@@ -26,17 +26,24 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+  def login
+    user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
+      user.generate_token
+      render json: user
+    else
+      render json: "Invalid Email or Password"
+    end
+  end
+
+
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      @user.generate_token
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 

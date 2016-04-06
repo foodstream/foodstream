@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   root 'sessions#login'
   get 'sessions/login'
   post 'sessions/login'
-  
+
   get 'sessions/signup'
 
   get 'sessions/logout'
-
+  
   get 'sessions/reset_password'
 
   # The priority is based upon order of creation: first created -> highest priority.
