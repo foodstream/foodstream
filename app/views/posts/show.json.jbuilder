@@ -6,3 +6,6 @@ end
 json.supplier do
   json.extract! @post.supplier, :id, :first_name, :last_name, :organization
 end
+if @post.claimant
+  json.claimant @post.claimant, :id, :first_name, :last_name, :organization
+end
