@@ -6,7 +6,4 @@ json.array! @posts do |post|
   json.supplier do
     json.extract! post.supplier, :id, :first_name, :last_name, :organization
   end
-  json.ignore_nil!
-  json.claimant post.claimant
-  json.url post_url(post, format: :json)
 end

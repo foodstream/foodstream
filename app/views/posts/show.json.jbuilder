@@ -6,10 +6,3 @@ end
 json.supplier do
   json.extract! @post.supplier, :id, :first_name, :last_name, :organization
 end
-json.ignore_nil!
-json.claimant @post.claimant
-
-
-# json.claimant do
-#   json.extract! @post.claimant, :id, :first_name, :last_name, :organization
-# end
