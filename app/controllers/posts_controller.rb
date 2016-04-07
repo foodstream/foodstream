@@ -16,7 +16,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-
   end
 
   # GET /posts/new
@@ -58,6 +57,10 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     head :no_content
+  end
+
+  def search
+    @posts = Post.all
   end
 
   private
