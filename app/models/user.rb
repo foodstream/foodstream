@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  validates :password, presence: true
   validates :email, presence: true, uniqueness: true
   validates_uniqueness_of :token, :allow_blank => true, :allow_nil => true
 
