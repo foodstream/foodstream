@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @user = User.find_by(token: params[:token])
     @posts = Post.where(supplier_id: @user.id)
 
-    @posts
+    render json: @posts
   end
 
   # GET /posts/1
