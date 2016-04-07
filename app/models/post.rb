@@ -9,6 +9,6 @@ class Post < ActiveRecord::Base
   validates :start_at, presence: true
   validates :end_at, presence: true
   validates :supplier_id, presence: true
-  validates :location_id, presence: true
+  # validates :location_id, presence: true
 
 end
