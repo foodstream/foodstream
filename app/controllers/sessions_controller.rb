@@ -22,4 +22,6 @@ class SessionsController < ApplicationController
 
   def reset_password
   end
+
+
 end
