@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'posts/search' => 'posts#search'
 
-  resources :users
+  resources :users, :except => [:index]
   resources :posts
 
   root 'sessions#login'
