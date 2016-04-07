@@ -9,8 +9,9 @@ class PostsController < ApplicationController
     # byebug
     @user = User.find_by(token: params[:token])
     @posts = Post.where(supplier_id: @user.id)
-
+    @claims = Post.where(claimant_id: @user.id)
     @posts
+    @claims
   end
 
   # GET /posts/1
