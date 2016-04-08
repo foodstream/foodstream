@@ -40,12 +40,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      render json: @user, status: :ok
+    else
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
@@ -53,9 +51,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
@@ -66,6 +62,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :password, :email, :organization, :location_id, :description)
+      params.require(:user).permit(:id, :first_name, :last_name, :password, :email, :organization, :location_id, :description)
     end
 end

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
+  get 'posts/search' => 'posts#search'
+
+  resources :users, :except => [:index]
   resources :posts
+
   root 'sessions#login'
   get 'sessions/login'
   post 'sessions/login'
@@ -8,7 +11,7 @@ Rails.application.routes.draw do
   get 'sessions/signup'
 
   get 'sessions/logout'
-  
+
   get 'sessions/reset_password'
 
   # The priority is based upon order of creation: first created -> highest priority.

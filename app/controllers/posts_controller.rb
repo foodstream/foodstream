@@ -8,14 +8,14 @@ class PostsController < ApplicationController
   def index
     @user = User.find_by(token: params[:token])
     @posts = Post.where(supplier_id: @user.id)
-
+    @claims = Post.where(claimant_id: @user.id)
     @posts
+    @claims
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-
   end
 
   # GET /posts/new
@@ -57,6 +57,10 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     head :no_content
+  end
+
+  def search
+    @posts = Post.all
   end
 
   private

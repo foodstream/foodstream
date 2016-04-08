@@ -22,11 +22,10 @@ user3 = User.create(first_name: "Jane", last_name: "Doe", password: "password", 
 user4 = User.create(first_name: "Patti", last_name: "Mayo", password: "password", email: "patti@patti.com", organization: "Durham Foodbank", location_id: location4.id, description: "Director")
 user5 = User.create(first_name: "Susie", last_name: "Q", password: "password", email: "susie@susie.com", organization: "Whimsical Weddings Catering", description: "Owner")
 
-post1 = Post.create(title: "Canned goods", details: "300 cans of beans", start_at: "2013-11-22 2:25PM", end_at: "2013-11-29 2:25PM", supplier_id: user1.id, location_id: location1.id)
-post2 = Post.create(title: "Fresh produce", details: "12 lbs of arugula", start_at: "2014-10-12 12:25PM", end_at: "2014-10-13 2:25PM", supplier_id: user2.id, location_id: location2.id)
-post3 = Post.create(title: "Catering leftovers", details: "3 trays of mashed potatoes and 2 trays of brisket", start_at: "2015-3-12 2:25PM", end_at: "2015-3-12 3:25PM", supplier_id: user5.id, location_id: location6.id)
-post4 = Post.create(title: "Misc. grocieries", details: "18 boxes of spaghetti", start_at: "2016-5-12 1:25PM", end_at: "2016-6-12 9:25PM", supplier_id: user1.id, location_id: location1.id)
-
+post1 = Post.create(title: "Canned goods", details: "300 cans of beans", start_at: "2013-11-22 2:25PM", end_at: "2013-11-29 2:25PM", supplier_id: user1.id, location_id: location1.id, claimed: false, completed: false, claimant_id: nil)
+post2 = Post.create(title: "Fresh produce", details: "12 lbs of arugula", start_at: "2014-10-12 12:25PM", end_at: "2014-10-13 2:25PM", supplier_id: user2.id, location_id: location2.id, claimed: false, completed: false, claimant_id: nil)
+post3 = Post.create(title: "Catering leftovers", details: "3 trays of mashed potatoes and 2 trays of brisket", start_at: "2015-3-12 2:25PM", end_at: "2015-3-12 3:25PM", supplier_id: user5.id, location_id: location6.id, claimed: false, completed: true, claimant_id: 1)
+post4 = Post.create(title: "Misc. grocieries", details: "18 boxes of spaghetti", start_at: "2016-5-12 1:25PM", end_at: "2016-6-12 9:25PM", supplier_id: user1.id, location_id: location1.id, claimed: false, completed: false, claimant_id: nil)
 
 message1 = Message.create(post_id: post1.id, body: "Can you tell me what kind of beans are being offered?")
 message2 = Message.create(post_id: post1.id, body: "Lima beans all the way.")
