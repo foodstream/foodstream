@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    # byebug
     @user = User.find_by(token: params[:token])
     @posts = Post.where(supplier_id: @user.id)
 
@@ -64,6 +63,7 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

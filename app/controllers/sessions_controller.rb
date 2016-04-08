@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     user = User.find_by(token: params[:token])
     if user
       user.destroy_token
+      @current_user = nil
     end
     render json: "Logged out"
   end
