@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     @post.supplier = @current_user
 
     if @post.save
-      render :action => :show
+      render :show, status: :created, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end
