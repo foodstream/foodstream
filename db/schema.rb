@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409005902) do
+ActiveRecord::Schema.define(version: 20160409010345) do
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "claimant_id"
@@ -75,9 +75,12 @@ ActiveRecord::Schema.define(version: 20160409005902) do
     t.string   "organization"
     t.integer  "location_id"
     t.text     "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "token"
+    t.decimal  "lat",             precision: 10, scale: 6
+    t.decimal  "long",            precision: 10, scale: 6
+    t.string   "address_string"
   end
 
 end
