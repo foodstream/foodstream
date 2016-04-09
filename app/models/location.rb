@@ -1,5 +1,3 @@
-require 'byebug'
-
 class Location < ActiveRecord::Base
   # def initialize(latitude, longitude, address_string)
   #   byebug
