@@ -18,7 +18,7 @@ json.array! @claims do |claim|
   json.extract! claim, :id, :title, :details, :start_at, :end_at, :supplier_id, :claimed, :completed, :claimant_id
   if claim.location
     json.location do
-      json.extract! post.location, :id, :address_1, :address_2, :city, :state, :zip_code, :nickname
+      json.extract! claim.location, :id, :address_1, :address_2, :city, :state, :zip_code, :nickname
     end
   end
   json.supplier do
