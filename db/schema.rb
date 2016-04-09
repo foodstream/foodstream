@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406153543) do
+ActiveRecord::Schema.define(version: 20160409005902) do
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "claimant_id"
@@ -28,8 +28,11 @@ ActiveRecord::Schema.define(version: 20160406153543) do
     t.string   "state"
     t.string   "zip_code"
     t.string   "nickname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.decimal  "lat",            precision: 10, scale: 6
+    t.decimal  "long",           precision: 10, scale: 6
+    t.string   "address_string"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -46,11 +49,14 @@ ActiveRecord::Schema.define(version: 20160406153543) do
     t.datetime "end_at"
     t.integer  "supplier_id"
     t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.boolean  "claimed"
     t.boolean  "completed"
     t.integer  "claimant_id"
+    t.decimal  "lat",            precision: 10, scale: 6
+    t.decimal  "long",           precision: 10, scale: 6
+    t.string   "address_string"
   end
 
   create_table "ratings", force: :cascade do |t|
