@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     @post.supplier = @current_user
 
     if @post.save
-      render :show, status: :created, location: @post
+      render json: @post, status: :created, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     if @post.update(post_params)
-      render :show, status: :ok, location: @post
+      render json: @post, status: :ok, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end
