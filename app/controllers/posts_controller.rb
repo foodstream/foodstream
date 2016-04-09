@@ -32,6 +32,8 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    # @location = Location.new(post_params[:latitude], post_params[:longitude], post_params[:address_string])
+    # @post.location_id = @location.id
     @post.supplier = @current_user
 
     if @post.save
@@ -73,6 +75,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :details, :start_at, :end_at, :supplier_id, :location_id, :claimed, :claimant_id, :completed, :lat, :long, :address_string)
+      params.require(:post).permit(:title, :details, :start_at, :end_at, :supplier_id, :location_id, :claimed, :claimant_id, :completed, :latitude, :longitude, :address_string)
     end
 end

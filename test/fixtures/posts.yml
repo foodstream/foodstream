@@ -9,6 +9,9 @@ one:
   location_id: 1
   claimed: false
   completed: false
+  latitude: "35.99599080000001"
+  longitude: "78.90235000000001"
+  address_string: 300 W Main St, Durham, NC 27701, USA
 
 
 
@@ -21,3 +24,6 @@ two:
   location_id: 1
   claimed: false
   completed: false
+  latitude: "35.99599080000001"
+  longitude: "78.90235000000001"
+  address_string: 300 W Main St, Durham, NC 27701, USA
