@@ -32,8 +32,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    # @location = Location.new(post_params[:latitude], post_params[:longitude], post_params[:address_string])
-    # @post.location_id = @location.id
+
     @post.supplier = @current_user
 
     if @post.save
@@ -63,7 +62,15 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.all
+
+    latitude = post_params[:latitude]
+    longitude = post_params[:longitude]
+    byebug
+
+    @posts = Post.within(25, :origin => [35.9982851, -78.9049933])
+    x = latitude
+    # x = Location.within(post_params[:radius], :origin => [latitude, longitude])
+    # @posts = Post.all
   end
 
   private
