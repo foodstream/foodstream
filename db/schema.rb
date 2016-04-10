@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409170932) do
+ActiveRecord::Schema.define(version: 20160410151333) do
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "claimant_id"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160409170932) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "address_string"
+    t.string   "image_link"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160409170932) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "address_string"
+    t.string   "image_link"
   end
 
 end
