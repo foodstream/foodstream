@@ -8,19 +8,17 @@ policy_document = '{"expiration": "2017-01-01T00:00:00Z",
     ["starts-with",
       "$key",
       "uploads/"],
-    {"acl": "private"},
+    {"acl": "public-read"},
     {"success_action_redirect": "https://torrid-torch-8806.firebaseapp.com"},
     ["starts-with", "$Content-Type", ""]
   ]
 }'
 
-
-
 policy = Base64.encode64(policy_document).gsub("\n","")
 
 signature = Base64.encode64(
     OpenSSL::HMAC.digest(
-        OpenSSL::Digest::Digest.new('sha1'),
+        OpenSSL::Digest.new('sha1'),
         ENV["AWS_FOODSTREAM_KEY"], policy)
     ).gsub("\n","")
 
