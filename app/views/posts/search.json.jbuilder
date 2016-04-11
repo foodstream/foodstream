@@ -1,8 +1,8 @@
 json.array! @posts do |post|
   if !post.claimed
     json.extract! post, :id, :title, :details, :supplier_id, :claimed, :completed, :claimant_id, :latitude, :longitude, :address_string, :image_link
-    json.start_at post.start_at.strftime("%m/%d/%Y %I:%M%p")
-    json.end_at post.end_at.strftime("%m/%d/%Y %I:%M%p")
+    json.start_at post.start_at.strftime("%Y/%m/%d %I:%M%p")
+    json.end_at post.end_at.strftime("%Y/%m/%d %I:%M%p")
     if post.location
       json.location do
         json.extract! post.location, :id, :address_1, :address_2, :city, :state, :zip_code, :nickname
