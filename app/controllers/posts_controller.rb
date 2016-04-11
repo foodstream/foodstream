@@ -46,7 +46,10 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    image_link = ENV["S3_PATH"] + post_params[:image_link] if post_params[:image_link]
+
     if @post.update(post_params)
+      @post.update_attribute(:image_link, image_link)
       render :action => :show
     else
       render json: @post.errors, status: :unprocessable_entity
