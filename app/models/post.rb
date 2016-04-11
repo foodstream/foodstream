@@ -17,5 +17,4 @@ class Post < ActiveRecord::Base
                      :lat_column_name => :latitude,
                      :lng_column_name => :longitude
 
-
 end

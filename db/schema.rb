@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410151333) do
+ActiveRecord::Schema.define(version: 20160411001120) do
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "claimant_id"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 20160410151333) do
     t.string   "state"
     t.string   "zip_code"
     t.string   "nickname"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "latitude"
-    t.string   "longitude"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.decimal  "latitude",       precision: 12, scale: 7
+    t.decimal  "longitude",      precision: 12, scale: 7
     t.string   "address_string"
   end
 
@@ -49,13 +49,13 @@ ActiveRecord::Schema.define(version: 20160410151333) do
     t.datetime "end_at"
     t.integer  "supplier_id"
     t.integer  "location_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.boolean  "claimed"
     t.boolean  "completed"
     t.integer  "claimant_id"
-    t.string   "latitude"
-    t.string   "longitude"
+    t.decimal  "latitude",       precision: 12, scale: 7
+    t.decimal  "longitude",      precision: 12, scale: 7
     t.string   "address_string"
     t.string   "image_link"
   end
@@ -76,11 +76,11 @@ ActiveRecord::Schema.define(version: 20160410151333) do
     t.string   "organization"
     t.integer  "location_id"
     t.text     "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "token"
-    t.string   "latitude"
-    t.string   "longitude"
+    t.decimal  "latitude",        precision: 12, scale: 7
+    t.decimal  "longitude",       precision: 12, scale: 7
     t.string   "address_string"
     t.string   "image_link"
   end

@@ -62,15 +62,10 @@ class PostsController < ApplicationController
   end
 
   def search
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
 
-    latitude = post_params[:latitude]
-    longitude = post_params[:longitude]
-    byebug
-
-    @posts = Post.within(25, :origin => [35.9982851, -78.9049933])
-    x = latitude
-    # x = Location.within(post_params[:radius], :origin => [latitude, longitude])
-    # @posts = Post.all
+    @posts = Post.within(params[:radius].to_f, :origin => [latitude, longitude])
   end
 
   private
