@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'messages/send'
+
   get 'posts/search' => 'posts#search'
 
   resources :users, :except => [:index]
