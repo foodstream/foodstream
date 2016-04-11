@@ -9,7 +9,6 @@ policy_document = '{"expiration": "2017-01-01T00:00:00Z",
       "$key",
       "uploads/"],
     {"acl": "public-read"},
-    {"success_action_redirect": "https://torrid-torch-8806.firebaseapp.com"},
     ["starts-with", "$Content-Type", ""]
   ]
 }'
