@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       user.destroy_token
       @current_user = nil
     end
-    render json: "Logged out"
+    
   end
 
   def reset_password
