@@ -32,7 +32,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    image_link = ENV["S3_PATH"] + post_params[:image_link] if post_params[:image_link]
 
+    @post.image_link = image_link
     @post.supplier = @current_user
 
     if @post.save
