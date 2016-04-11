@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  def send
+  def send_sms
     byebug
     recipient = params[:recipient]
     sender = params[:sender]
@@ -8,9 +8,14 @@ class MessagesController < ApplicationController
     message = Message.new(post_id: params[:post_id], body: body)
     message.save
 
-    sms = FoodstreamSms.send_message(recipient, sender, body)
+    # sms = FoodstreamSms.send_message(recipient, sender, body)
     sms.deliver
   end
+
+  def send_email
+    SendEmailJob.set.perform_now(params[:recipient], params[:sender], params[:body], params[:subject])
+  end
+
 
   private
 
