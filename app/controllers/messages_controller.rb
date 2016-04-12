@@ -12,14 +12,13 @@ class MessagesController < ApplicationController
   end
 
   def send_email
-    SendEmailJob.perform_now(params[:recipient], params[:sender], params[:body], params[:subject])
+    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject])
     message = Message.new(post_id: params[:post_id], body: params[:body])
     message.save
   end
 
 
   private
-
 
     #Never trust parameters from the scary internet, only allow the white list through.
     def message_params
