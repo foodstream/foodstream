@@ -30,6 +30,7 @@ gem 'geokit-rails'
 
 gem 'action_smser'
 
+
 gem 'bcrypt', '~> 3.1.7'
 # Use ActiveModel has_secure_password
 gem 'rack-cors', :require => 'rack/cors'

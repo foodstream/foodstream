@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  post 'messages/send'
-
+  post 'messages/send_sms'
+  post 'messages/send_email'
   get 'posts/search' => 'posts#search'
 
   resources :users, :except => [:index]
