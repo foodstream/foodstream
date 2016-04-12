@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   post 'messages/send_sms'
   post 'messages/send_email'
   get 'posts/search' => 'posts#search'
-
+  post 'posts/:id/send_ical' => 'posts#send_ical'
   resources :users, :except => [:index]
   resources :posts
 

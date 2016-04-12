@@ -30,6 +30,7 @@ gem 'geokit-rails'
 
 gem 'action_smser'
 
+gem 'icalendar'
 
 gem 'bcrypt', '~> 3.1.7'
 # Use ActiveModel has_secure_password

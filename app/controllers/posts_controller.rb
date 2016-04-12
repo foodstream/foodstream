@@ -1,5 +1,6 @@
+
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :send_ical]
   before_action :logged_in?
 
 
@@ -71,6 +72,21 @@ class PostsController < ApplicationController
     longitude = params[:longitude].to_f
 
     @posts = Post.within(params[:radius].to_f, :origin => [latitude, longitude])
+  end
+
+  def send_ical
+    @calendar = Icalendar::Calendar.new
+    event = Icalendar::Event.new
+    event.dtstart = @post.start_at
+    event.dtend = @post.end_at
+    event.summary = @post.title
+    event.description = @post.details
+    event.location = @post.address_string
+    @calendar.add_event(event)
+    @calendar.publish
+    file = File.new("tmp/#{Time.now}sample.ics", "w+")
+    file.write(@calendar.to_ical)
+    file.close
   end
 
   private
