@@ -20,7 +20,6 @@ class MessagesController < ApplicationController
 
   private
 
-
     #Never trust parameters from the scary internet, only allow the white list through.
     def message_params
       params.require(:message).permit(:id, :post_id, :body)

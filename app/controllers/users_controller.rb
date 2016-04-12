@@ -40,7 +40,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    byebug
     image_link = ENV["S3_PATH"] + user_params[:image_link] if user_params[:image_link]
     if @user.update(user_params)
       @user.update_attribute(:image_link, image_link)

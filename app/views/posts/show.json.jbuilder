@@ -1,5 +1,7 @@
 
-json.extract! @post, :id, :title, :details, :start_at, :end_at, :created_at, :updated_at, :claimed, :claimant_id, :completed, :latitude, :longitude, :address_string, :image_link
+json.extract! @post, :id, :title, :details, :claimed, :claimant_id, :completed, :latitude, :longitude, :address_string, :image_link
+json.start_at @post.start_at.strftime("%Y/%m/%d %I:%M%p")
+json.end_at @post.end_at.strftime("%Y/%m/%d %I:%M%p")
 if @post.location
   json.location  @post.location, :id, :address_1, :address_2, :city, :state, :zip_code, :nickname
 end
