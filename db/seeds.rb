@@ -40,11 +40,11 @@ post10 = Post.create(title: "mangoes", details: "gooey but good", start_at: "201
 
 
 
-message1 = Message.create(post_id: post1.id, body: "Can you tell me what kind of beans are being offered?")
-message2 = Message.create(post_id: post1.id, body: "Lima beans all the way.")
-message3 = Message.create(post_id: post1.id, body: "Great, thanks!")
-message4 = Message.create(post_id: post3.id, body: "I'm on my way but I'm running 5 minutes latitudee!")
-message5 = Message.create(post_id: post3.id, body: "No worries - take your time!")
+message1 = Message.create(post_id: post1.id, body: "Can you tell me what kind of beans are being offered?", sender_id: 4)
+message2 = Message.create(post_id: post1.id, body: "Lima beans all the way.", sender_id: 1)
+message3 = Message.create(post_id: post1.id, body: "Great, thanks!", sender_id: 4)
+message4 = Message.create(post_id: post3.id, body: "I'm on my way but I'm running 5 minutes latitudee!", sender_id: 7)
+message5 = Message.create(post_id: post3.id, body: "No worries - take your time!", sender_id: 5)
 
 review1 = Rating.create(rating: 4, reviewer_id: user3.id, reviewed_id: user1.id)
 review2 = Rating.create(rating: 5, reviewer_id: user1.id, reviewed_id: user3.id)
