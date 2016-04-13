@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
   end
 
   def send_email
-    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject])
+    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:file_name])
     message = Message.new(post_id: params[:post_id], body: params[:body])
     message.save
   end

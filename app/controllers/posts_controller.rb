@@ -1,5 +1,7 @@
-
+require 'ical_module'
 class PostsController < ApplicationController
+  include IcalModule
+
   before_action :set_post, only: [:show, :edit, :update, :destroy, :send_ical]
   before_action :logged_in?
 
@@ -75,18 +77,16 @@ class PostsController < ApplicationController
   end
 
   def send_ical
-    @calendar = Icalendar::Calendar.new
-    event = Icalendar::Event.new
-    event.dtstart = @post.start_at
-    event.dtend = @post.end_at
-    event.summary = @post.title
-    event.description = @post.details
-    event.location = @post.address_string
-    @calendar.add_event(event)
-    @calendar.publish
-    file = File.new("tmp/#{Time.now}sample.ics", "w+")
-    file.write(@calendar.to_ical)
-    file.close
+    #set up hash for ical generation
+    file_name = "tmp/#{Time.now}post_event.ics"
+    event_hash = {dstart: @post.start_at, dtend: @post.end_at, summary: @post.title, description: @post.details, location: @post.address_string, file_name: file_name}
+
+    if create_ics_file(event_hash)
+      recipient_email = User.find(@post.claimant_id).email
+      redirect_to controller: 'messages', action: 'send_email', recipient:recipient_email, subject:"Your requested foodstream calendar event", body:"#{@post.title} event info attached", file_name:file_name, post_id:@post.id
+    else
+      render json: "Ics file not created"
+    end
   end
 
   private
