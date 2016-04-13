@@ -82,7 +82,7 @@ class PostsController < ApplicationController
     event_hash = {dstart: @post.start_at, dtend: @post.end_at, summary: @post.title, description: @post.details, location: @post.address_string, file_name: file_name}
 
     if create_ics_file(event_hash)
-      recipient_email = User.find(@post.claimant_id).email
+      recipient_email = User.find(@current_user.id).email
       redirect_to controller: 'messages', action: 'send_email', recipient:recipient_email, subject:"Your requested foodstream calendar event", body:"#{@post.title} event info attached", file_name:file_name, post_id:@post.id
     else
       render json: "Ics file not created"
