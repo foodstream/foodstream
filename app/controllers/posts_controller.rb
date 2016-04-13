@@ -1,5 +1,8 @@
+require 'ical_module'
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  include IcalModule
+
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :send_ical]
   before_action :logged_in?
 
 
@@ -71,6 +74,19 @@ class PostsController < ApplicationController
     longitude = params[:longitude].to_f
 
     @posts = Post.within(params[:radius].to_f, :origin => [latitude, longitude])
+  end
+
+  def send_ical
+    #set up hash for ical generation
+    file_name = "tmp/#{Time.now}post_event.ics"
+    event_hash = {dstart: @post.start_at, dtend: @post.end_at, summary: @post.title, description: @post.details, location: @post.address_string, file_name: file_name}
+
+    if create_ics_file(event_hash)
+      recipient_email = User.find(@post.claimant_id).email
+      redirect_to controller: 'messages', action: 'send_email', recipient:recipient_email, subject:"Your requested foodstream calendar event", body:"#{@post.title} event info attached", file_name:file_name, post_id:@post.id
+    else
+      render json: "Ics file not created"
+    end
   end
 
   private
