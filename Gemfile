@@ -22,16 +22,13 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
 gem 'rails_12factor'
 gem 'puma'
-
+gem 'paperclip', '~> 4.3'
+gem 'aws-sdk', '~> 1.6'
 gem 'geokit-rails'
-
 gem 'action_smser'
-
 gem 'icalendar'
-
 gem 'bcrypt', '~> 3.1.7'
 # Use ActiveModel has_secure_password
 gem 'rack-cors', :require => 'rack/cors'

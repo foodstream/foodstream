@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     image_link = ENV["S3_PATH"] + user_params[:image_link] if user_params[:image_link]
     if @user.update(user_params)
       @user.update_attribute(:image_link, image_link)
-      render json: @user, status: :ok
+      render :action => :show
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -64,6 +64,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :first_name, :last_name, :password, :email, :organization, :location_id, :description, :latitude, :longitude, :address_string, :image_link)
+      params.require(:user).permit(:id, :first_name, :last_name, :password, :email, :organization, :location_id, :description, :latitude, :longitude, :address_string, :image_link, :profile_image)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413171410) do
+ActiveRecord::Schema.define(version: 20160414135028) do
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "claimant_id"
@@ -50,15 +50,19 @@ ActiveRecord::Schema.define(version: 20160413171410) do
     t.datetime "end_at"
     t.integer  "supplier_id"
     t.integer  "location_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.boolean  "claimed"
     t.boolean  "completed"
     t.integer  "claimant_id"
-    t.decimal  "latitude",       precision: 12, scale: 7
-    t.decimal  "longitude",      precision: 12, scale: 7
+    t.decimal  "latitude",                precision: 12, scale: 7
+    t.decimal  "longitude",               precision: 12, scale: 7
     t.string   "address_string"
     t.string   "image_link"
+    t.string   "post_image_file_name"
+    t.string   "post_image_content_type"
+    t.integer  "post_image_file_size"
+    t.datetime "post_image_updated_at"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -77,13 +81,17 @@ ActiveRecord::Schema.define(version: 20160413171410) do
     t.string   "organization"
     t.integer  "location_id"
     t.text     "description"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.string   "token"
-    t.decimal  "latitude",        precision: 12, scale: 7
-    t.decimal  "longitude",       precision: 12, scale: 7
+    t.decimal  "latitude",                   precision: 12, scale: 7
+    t.decimal  "longitude",                  precision: 12, scale: 7
     t.string   "address_string"
     t.string   "image_link"
+    t.string   "profile_image_file_name"
+    t.string   "profile_image_content_type"
+    t.integer  "profile_image_file_size"
+    t.datetime "profile_image_updated_at"
   end
 
 end

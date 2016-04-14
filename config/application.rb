@@ -21,7 +21,7 @@ module Foodstream
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true  
+    config.active_record.raise_in_transactional_callbacks = true
 
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
@@ -29,5 +29,16 @@ module Foodstream
         resource '*', :headers => :any, :methods => [:get, :post, :patch, :put, :delete, :options]
       end
     end
+
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :url =>':s3_domain_url',
+      :path => '/:class/:attachment/:id_partition/:style/:filename',
+      :s3_credentials => {
+        :bucket => ENV['S3_BUCKET_NAME'],
+        :access_key_id => ENV['IMAGE_ACCESS_ID'],
+        :secret_access_key => ENV['IMAGE_BASE']
+      }
+    }
   end
 end

@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
   has_many :ratings, class_name: "Rating", foreign_key: "reviewed_id"
   accepts_nested_attributes_for :ratings, allow_destroy: true
 
+  has_attached_file :profile_image
+  validates_attachment_content_type :profile_image,
+                                    :content_type => /.*/,
+                                    :message => 'invalid image'
+
   has_secure_password
 
   def generate_token
