@@ -6,13 +6,12 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    render json: @users
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    render json: @user
+
   end
 
   # GET /users/new
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.generate_token
-      render json: @user
+      render :action => :show
     else
       render json: @user.errors, status: :unprocessable_entity
     end
