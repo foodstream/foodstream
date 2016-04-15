@@ -39,10 +39,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    image_link = ENV["S3_PATH"] + params[:image_link] if params[:image_link]
+    image_link = ENV["S3_PATH"] + user_params[:image_link] if user_params[:image_link]
     if @user.update(user_params)
       @user.update_attribute(:image_link, image_link)
-      render :action => :show
+      render :action => :show, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
