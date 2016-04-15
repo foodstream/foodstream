@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      render :action => :show
+      render :action => :show, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
