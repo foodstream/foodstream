@@ -10,9 +10,8 @@ class Post < ActiveRecord::Base
   has_one :exchange
   belongs_to :location
   has_attached_file :post_image
-  # validates_attachment_content_type :post_image, content_type: /\Aimg[0-9]+.+\z/
   validates_attachment_content_type :post_image, content_type: /\Aimage\/.*\Z/
-  validates_attachment_file_name :post_image, matches: /img[0-9]+.+/
+  # validates_attachment_file_name :post_image, matches: /img[0-9]+.+/
 
   acts_as_mappable :default_units => :miles,
                      :default_formula => :sphere,
