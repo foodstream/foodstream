@@ -39,6 +39,12 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    if params[:ratings]
+      # @user.ratings.build
+      @user.ratings << Rating.new(rating: params[:ratings][:rating], reviewer_id: params[:ratings][:reviewer_id], reviewed_id: params[:ratings][:reviewed_id])
+
+    end
+
     if @user.update(user_params)
       render :action => :show
     else
@@ -61,6 +67,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :first_name, :last_name, :password, :email, :organization, :location_id, :description, :latitude, :longitude, :address_string, :profile_image)
+      params.require(:user).permit(:id, :first_name, :last_name, :password, :email, :organization, :location_id, :description, :latitude, :longitude, :address_string, :profile_image, ratings_attributes: [:id, :rating, :reviewer_id, :reviewed_id ])
     end
 end

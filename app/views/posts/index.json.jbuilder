@@ -9,9 +9,13 @@ json.array! @posts do |post|
   end
   json.supplier do
     json.extract! post.supplier, :id, :first_name, :last_name, :organization
+    json.supplier_average_rating post.supplier.average_rating
+
   end
   if post.claimant
     json.claimant post.claimant, :id, :first_name, :last_name, :organization
+    json.claimant_average_rating post.claimant.average_rating
+
   end
 end
 
@@ -27,8 +31,11 @@ json.array! @claims do |claim|
   end
   json.supplier do
     json.extract! claim.supplier, :id, :first_name, :last_name, :organization
+    json.supplier_average_rating claim.supplier.average_rating
   end
   if claim.claimant
     json.claimant claim.claimant, :id, :first_name, :last_name, :organization
+    json.claimant_average_rating claim.claimant.average_rating
+
   end
 end

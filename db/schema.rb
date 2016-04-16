@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414135028) do
-
-  create_table "exchanges", force: :cascade do |t|
-    t.integer  "claimant_id"
-    t.integer  "post_id"
-    t.boolean  "completed"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
+ActiveRecord::Schema.define(version: 20160414201411) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "address_1"
@@ -58,7 +50,6 @@ ActiveRecord::Schema.define(version: 20160414135028) do
     t.decimal  "latitude",                precision: 12, scale: 7
     t.decimal  "longitude",               precision: 12, scale: 7
     t.string   "address_string"
-    t.string   "image_link"
     t.string   "post_image_file_name"
     t.string   "post_image_content_type"
     t.integer  "post_image_file_size"
@@ -87,7 +78,6 @@ ActiveRecord::Schema.define(version: 20160414135028) do
     t.decimal  "latitude",                   precision: 12, scale: 7
     t.decimal  "longitude",                  precision: 12, scale: 7
     t.string   "address_string"
-    t.string   "image_link"
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"

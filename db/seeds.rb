@@ -49,3 +49,7 @@ review3 = Rating.create(rating: 3, reviewer_id: user12.id, reviewed_id: user13.i
 review4 = Rating.create(rating: 5, reviewer_id: user13.id, reviewed_id: user14.id)
 review5 = Rating.create(rating: 2, reviewer_id: user14.id, reviewed_id: user13.id)
 review6 = Rating.create(rating: 5, reviewer_id: user13.id, reviewed_id: user12.id)
+review7 = Rating.create(rating: 4, reviewer_id: user13.id, reviewed_id: user1.id)
+review8 = Rating.create(rating: 3, reviewer_id: user13.id, reviewed_id: user1.id)
+review9 = Rating.create(rating: 4, reviewer_id: user1.id, reviewed_id: user11.id)
+review10 = Rating.create(rating: 5, reviewer_id: user1.id, reviewed_id: user12.id)
