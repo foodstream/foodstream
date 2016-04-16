@@ -35,11 +35,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    image_link = ENV["S3_PATH"] + post_params[:image_link] if post_params[:image_link]
-
-    @post.image_link = image_link
     @post.supplier = @current_user
-
     if @post.save
       render :show, status: :created, location: @post
     else
@@ -51,10 +47,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    image_link = ENV["S3_PATH"] + post_params[:image_link] if post_params[:image_link]
-
     if @post.update(post_params)
-      @post.update_attribute(:image_link, image_link)
       render :action => :show
     else
       render json: @post.errors, status: :unprocessable_entity
@@ -98,6 +91,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :details, :start_at, :end_at, :supplier_id, :location_id, :claimed, :claimant_id, :completed, :latitude, :longitude, :address_string, :image_link, :post_image)
+      params.require(:post).permit(:title, :details, :start_at, :end_at, :supplier_id, :location_id, :claimed, :claimant_id, :completed, :latitude, :longitude, :address_string, :post_image)
     end
 end
