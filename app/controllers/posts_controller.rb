@@ -10,8 +10,8 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @user = User.find_by(token: params[:token])
-    @posts = Post.where(supplier_id: @user.id)
-    @claims = Post.where(claimant_id: @user.id)
+    @posts = Post.where(supplier_id: @user.id).where('end_at > ?', DateTime.now)
+    @claims = Post.where(claimant_id: @user.id).where('end_at > ?', DateTime.now)
     @posts
     @claims
   end
@@ -66,7 +66,7 @@ class PostsController < ApplicationController
     latitude = params[:latitude].to_f
     longitude = params[:longitude].to_f
 
-    @posts = Post.within(params[:radius].to_f, :origin => [latitude, longitude])
+    @posts = Post.within(params[:radius].to_f, :origin => [latitude, longitude]).where('end_at > ?', DateTime.now)
   end
 
   def send_ical
