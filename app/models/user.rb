@@ -11,9 +11,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :ratings, allow_destroy: true
 
   has_attached_file :profile_image
-  validates_attachment_content_type :profile_image,
-                                    :content_type => /.*/,
-                                    :message => 'invalid image'
+  validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
+  validates_attachment_file_name :profile_image, matches: /img[0-9]+.+/
 
   has_secure_password
 
