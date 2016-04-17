@@ -13,20 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160417145345) do
 
-  create_table "locations", force: :cascade do |t|
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.string   "nickname"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.decimal  "latitude",       precision: 12, scale: 7
-    t.decimal  "longitude",      precision: 12, scale: 7
-    t.string   "address_string"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.integer  "post_id"
     t.text     "body"
