@@ -39,7 +39,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    byebug
     if params[:ratings_attributes]
       # @user.ratings.build
       @user.ratings << Rating.new(rating: params[:ratings_attributes][:rating], reviewer_id: params[:ratings_attributes][:reviewer_id], reviewed_id: params[:ratings_attributes][:reviewed_id])
