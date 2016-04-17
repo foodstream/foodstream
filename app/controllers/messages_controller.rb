@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
   end
 
   def send_email
+    # generate email for recipient and save the message body for chat history
     SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:file_name])
     message = Message.new(post_id: params[:post_id], body: params[:body], sender_id: @current_user.id)
     message.save
