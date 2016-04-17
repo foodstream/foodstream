@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   def update
     if params[:ratings_attributes]
       # @user.ratings.build
-      @user.ratings << Rating.new(rating: params[:ratings_attributes][:rating], reviewer_id: params[:ratings_attributes][:reviewer_id], reviewed_id: params[:ratings_attributes][:reviewed_id])
+      @user.ratings << Rating.new(rating: params[:ratings_attributes][:rating].to_i, reviewer_id: params[:ratings_attributes][:reviewer_id].to_i, reviewed_id: params[:ratings_attributes][:reviewed_id].to_i)
     end
 
     if @user.update(user_params)
