@@ -39,9 +39,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if params[:ratings_attributes]
+    if user_params["ratings_attributes"]
       # @user.ratings.build
-      @user.ratings << Rating.new(rating: params[:ratings_attributes][:rating].to_i, reviewer_id: params[:ratings_attributes][:reviewer_id].to_i, reviewed_id: params[:ratings_attributes][:reviewed_id].to_i)
+      @user.ratings << Rating.new(rating: user_params["ratings_attributes"].first["rating"].to_i, reviewer_id: user_params["ratings_attributes"].first["reviewer_id"].to_i, reviewed_id: user_params["ratings_attributes"].first["reviewed_id"].to_i)
     end
 
     if @user.update(user_params)
