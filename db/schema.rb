@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414201411) do
+ActiveRecord::Schema.define(version: 20160417145345) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "address_1"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20160414201411) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.integer  "supplier_id"
-    t.integer  "location_id"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.boolean  "claimed"
@@ -70,7 +69,6 @@ ActiveRecord::Schema.define(version: 20160414201411) do
     t.string   "password_digest"
     t.string   "email"
     t.string   "organization"
-    t.integer  "location_id"
     t.text     "description"
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
