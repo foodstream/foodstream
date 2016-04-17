@@ -27,7 +27,6 @@ gem 'puma'
 gem 'paperclip', '~> 4.3'
 gem 'aws-sdk', '~> 1.6'
 gem 'geokit-rails'
-gem 'action_smser'
 gem 'icalendar'
 gem 'bcrypt', '~> 3.1.7'
 # Use ActiveModel has_secure_password

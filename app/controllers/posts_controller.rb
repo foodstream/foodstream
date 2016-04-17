@@ -11,7 +11,6 @@ class PostsController < ApplicationController
   def index
     @user = User.find_by(token: params[:token])
     @posts = Post.where('supplier_id = ? or claimant_id = ?', @user.id, @user.id)
-  
   end
 
   # GET /posts/1
@@ -22,7 +21,6 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-
   end
 
   # GET /posts/1/edit
@@ -35,7 +33,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.supplier = @current_user
     if @post.save
-      render :show, status: :created, location: @post
+      render action: "show.json.jbuilder"
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -46,7 +44,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     if @post.update(post_params)
-      render :action => :show
+      render action: "show.json.jbuilder"
     else
       render json: @post.errors, status: :unprocessable_entity
     end

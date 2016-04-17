@@ -3,25 +3,13 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.where(post_id: params[:post_id])
-    render json: @messages
-  end
-
-  def send_sms
-    recipient = params[:recipient]
-    sender = params[:sender]
-    body = params[:body]
-
-    message = Message.new(post_id: params[:post_id], body: body, sender_id: @current_user.id)
-    message.save
-
-    sms = FoodstreamSms.send_message(recipient, sender, body)
-    sms.deliver
   end
 
   def send_email
     SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:file_name])
     message = Message.new(post_id: params[:post_id], body: params[:body], sender_id: @current_user.id)
     message.save
+    render nothing: true
   end
 
   private

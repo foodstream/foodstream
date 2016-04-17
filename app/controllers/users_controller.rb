@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.generate_token
-      render :action => :show
+      render action: "show.json.jbuilder"
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -42,11 +42,10 @@ class UsersController < ApplicationController
     if params[:ratings]
       # @user.ratings.build
       @user.ratings << Rating.new(rating: params[:ratings][:rating], reviewer_id: params[:ratings][:reviewer_id], reviewed_id: params[:ratings][:reviewed_id])
-
     end
 
     if @user.update(user_params)
-      render :action => :show
+      render action: "show.json.jbuilder"
     else
       render json: @user.errors, status: :unprocessable_entity
     end
