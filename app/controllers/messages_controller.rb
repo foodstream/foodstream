@@ -1,8 +1,9 @@
 class MessagesController < ApplicationController
-  before_action :logged_in?, only: [:index]
+  before_action :logged_in?, except: [:send_confirmation]
 
   def index
     @messages = Message.where(post_id: params[:post_id])
+    render action: "index.json.jbuilder"
   end
 
   def send_email
@@ -14,7 +15,7 @@ class MessagesController < ApplicationController
     end
 
     # generate email for recipient and save the message body for chat history
-    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:file_name], email_type)
+    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], email_type, params[:file_name])
 
     # only save message if part of chat history
     if params[:post_id]
@@ -23,6 +24,16 @@ class MessagesController < ApplicationController
     end
     render nothing: true
   end
+
+  def send_confirmation
+    email_type = "user_create"
+
+    # generate email for recipient and save the message body for chat history
+    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], email_type)
+
+    render nothing: true
+  end
+
 
   private
 

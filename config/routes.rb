@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'messages' => 'messages#index'
   get 'messages/send_email'
   post 'messages/send_email'
+  get 'messages/send_confirmation'
   get 'posts/search' => 'posts#search'
   post 'posts/:id/send_ical' => 'posts#send_ical'
 
