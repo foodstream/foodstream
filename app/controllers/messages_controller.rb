@@ -19,7 +19,6 @@ class MessagesController < ApplicationController
 
     # only save message if part of chat history
     if params[:post_id]
-      byebug
       message = Message.new(post_id: params[:post_id], body: params[:body], sender_id: params[:sender_id])
       message.save
     end
