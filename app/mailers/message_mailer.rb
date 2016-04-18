@@ -1,6 +1,6 @@
 class MessageMailer < ApplicationMailer
 
-  def send_email(recipient, body, subject, file_name, email_type)
+  def send_email(recipient, body, subject, email_type, file_name)
     # prepare for email send including file attachment as provided; file cleanup
     @body = body
     if email_type == "chat_message"
