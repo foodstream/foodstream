@@ -1,7 +1,8 @@
+require 'email_template'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in?, except: [:new, :create]
-
+  include EmailTemplate
   # GET /users
   # GET /users.json
   def index
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to controller: 'messages', action: 'send_email', recipient: @user.email, subject: "Thanks for signing up for foodstream!", body: "#{@user.email} signed up", email_type: "user_create"
+      redirect_to controller: 'messages', action: 'send_email', recipient: @user.email, subject: EmailTemplate::USER_CREATE_SUBJECT, body: "#{@user.email} #{EmailTemplate::USER_CREATE_BODY}", email_type: EmailTemplate::USER_CREATE_MESSAGE_TYPE
     else
       render json: @user.errors, status: :unprocessable_entity
     end

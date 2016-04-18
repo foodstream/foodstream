@@ -1,6 +1,6 @@
-require 'ical_module'
+require 'ical'
 class PostsController < ApplicationController
-  include IcalModule
+  include Ical
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :send_ical]
   before_action :logged_in?
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
     if create_ics_file(event_hash)
       recipient_email = User.find(@current_user.id).email
 
-      redirect_to controller: 'messages', action: 'send_email', recipient: recipient_email, subject: "Your requested foodstream calendar event", body: "#{@post.title} event info attached", file_name: file_name, post_id: @post.id, sender_id: @current_user.id, email_type: "ical"
+      redirect_to controller: 'messages', action: 'send_email', recipient: recipient_email, subject: EmailTemplate::ICAL_SUBJECT, body: "#{@post.title} #{EmailTemplate::ICAL_BODY}" , file_name: file_name, post_id: @post.id, sender_id: @current_user.id, email_type: EmailTemplate::ICAL_MESSAGE_TYPE
     else
       render json: "Ics file not created"
     end
