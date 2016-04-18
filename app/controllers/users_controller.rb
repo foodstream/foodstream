@@ -29,8 +29,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.generate_token
-      render action: "show.json.jbuilder"
+      redirect_to controller: 'messages', action: 'send_email', recipient: @user.email, subject: "Thanks for signing up for foodstream!", body: "#{@user.email} signed up", email_type: "user_create"
     else
       render json: @user.errors, status: :unprocessable_entity
     end
