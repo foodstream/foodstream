@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.where(post_id: params[:post_id])
+    render action: "index.json.jbuilder"
   end
 
   def send_email
