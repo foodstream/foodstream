@@ -77,7 +77,7 @@ header h1,
 .payoff h1,
 .details .carousel,
 .social a:hover{
-	color: #0bf397;
+	color: #00f78c;
 }
 
 .features p{
@@ -87,7 +87,7 @@ header h1,
 /*---- Background ----*/
 .features,
 .detail .carousel-indicators .active {
-	background: #0bf397;
+	background: #00f78c;
 }
 
 

@@ -15,6 +15,9 @@ class UsersController < ApplicationController
 
   end
 
+  def verification
+
+  end
   # GET /users/new
   def new
     @user = User.new

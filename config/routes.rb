@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   get 'posts/search' => 'posts#search'
   post 'posts/:id/send_ical' => 'posts#send_ical'
 
-  resources :users, :except => [:index]
+  resource :users, :only => [:verification], path: 'verification/:name' do
+    get :verification
+  end
+
+  resources :users, :except => [:index, :verification]
+
   resources :posts
 
   root 'sessions#login'
