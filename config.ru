@@ -3,7 +3,7 @@ require 'rack'
 require 'rack/cors'
 use Rack::Cors do
   allow do
-    origins 'https://foodstrea.am', 'https://sheltered-wildwood-38449.herokuapp.com', 'localhost:3000'
+    origins '*'
     resource '*', :headers => :any, :methods => [:get, :post, :patch, :put, :delete, :options]
   end
 end
