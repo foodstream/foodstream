@@ -26,10 +26,9 @@ class MessagesController < ApplicationController
   end
 
   def send_confirmation
-    email_type = "user_create"
 
     # generate email for recipient and save the message body for chat history
-    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], email_type)
+    SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:email_type])
 
     render nothing: true
   end

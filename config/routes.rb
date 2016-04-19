@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   get 'messages/send_confirmation'
   get 'posts/search' => 'posts#search'
   post 'posts/:id/send_ical' => 'posts#send_ical'
+  get 'users/:verification_key/verify' => 'users#verify'
+  post 'users/:verification_key/verify' => 'users#verify'
 
   resources :users, :except => [:index]
   resources :posts
+
 
   root 'sessions#login'
   get 'sessions/login'

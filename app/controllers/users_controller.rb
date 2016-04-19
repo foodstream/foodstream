@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in?, except: [:new, :create]
+  before_action :logged_in?, except: [:new, :create, :verify]
 
   # GET /users
   # GET /users.json
@@ -29,9 +29,26 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Thanks for signing up for foodstream!", body: "#{@user.email} signed up"
+      redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Email verification for foodstream account", body: "#{@user.email} signed up. click http://localhost:3000/users/#{@user.generate_verification_key}/verify?email=#{@user.email} to verify your account.", email_type: "user_create"
     else
       render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+
+  # PATCH/PUT /users/verify/:token
+  # PATCH/PUT /users/verify/token.json
+  def verify
+    @user = User.find_by(email: params[:email])
+    if @user && (@user.verification_key == params[:verification_key])
+      @user.destroy_verification_key
+      @user.verified = true
+      if @user.save
+        redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Your foodstream account has been verified!", body: "#{@user.email} has been verified", email_type: "verification_success"
+      end
+    else
+      redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Your foodstream verification failed.", body: "Please recheck your verification link and try again.", email_type: "verification_failed"
+
     end
   end
 
@@ -50,7 +67,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+
+
+    # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user.destroy

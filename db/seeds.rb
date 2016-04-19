@@ -8,12 +8,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-user1 = User.create(first_name: "Bob", last_name: "Ingles", password: "password", email: "foodstreamapp@gmail.com", organization: "Ingles grocery store", description: "Ingles manager", latitude: "35.993008", longitude: "-78.904495", address_string: "Ingles")
-user10 = User.create(first_name: "Byron", last_name: "Wall", password: "password", email: "byronssupersweetdevacct@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard")
-user11 = User.create(first_name: "Tori", last_name: "Hedden", password: "password", email: "tori.hedden@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard")
-user12 = User.create(first_name: "Mike", last_name: "Crane", password: "password", email: "mike.c0321@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard")
-user13 = User.create(first_name: "Marcia", last_name: "Corperw", password: "password", email: "mcorprew@gmail.com", organization: "foodstream", description: "Rails Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard")
-user14 = User.create(first_name: "Molly", last_name: "Gehring", password: "password", email: "gehring.mg@gmail.com", organization: "foodstream", description: "Rails Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard")
+user1 = User.create(first_name: "Bob", last_name: "Ingles", password: "password", email: "foodstreamapp@gmail.com", organization: "Ingles grocery store", description: "Ingles manager", latitude: "35.993008", longitude: "-78.904495", address_string: "Ingles", verified: true)
+user10 = User.create(first_name: "Byron", last_name: "Wall", password: "password", email: "byronssupersweetdevacct@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
+user11 = User.create(first_name: "Tori", last_name: "Hedden", password: "password", email: "tori.hedden@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
+user12 = User.create(first_name: "Mike", last_name: "Crane", password: "password", email: "mike.c0321@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
+user13 = User.create(first_name: "Marcia", last_name: "Corprew", password: "password", email: "mcorprew@gmail.com", organization: "foodstream", description: "Rails Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verification_key: "abcdef")
+user14 = User.create(first_name: "Molly", last_name: "Gehring", password: "password", email: "gehring.mg@gmail.com", organization: "foodstream", description: "Rails Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
 
 
 post1 = Post.create(title: "Canned goods", details: "300 cans of beans", start_at: "2013-11-22 2:25PM", end_at: "2013-11-29 2:25PM", supplier_id: user10.id, claimed: false, completed: false, claimant_id: nil, latitude: "35.99599080000001", longitude: "78.90235000000001", address_string: "300 W Main St, Durham, NC 27701, USA")

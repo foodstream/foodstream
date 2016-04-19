@@ -25,6 +25,15 @@ class User < ActiveRecord::Base
     update_attribute(:token, nil)
   end
 
+  def generate_verification_key
+    update_attribute(:verification_key, SecureRandom.hex) if !verification_key
+    verification_key
+  end
+
+  def destroy_verification_key
+    update_attribute(:verification_key, nil)
+  end
+
   def average_rating
     Rating.where(reviewed_id: id).average(:rating).to_f.round(2)
   end
