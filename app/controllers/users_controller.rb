@@ -49,7 +49,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/verify/:token
   # PATCH/PUT /users/verify/token.json
   def verify
-    byebug
     @user = User.find_by(email: params[:email])
 
     if @user && (@user.verification_key == params[:id])

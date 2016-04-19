@@ -12,7 +12,7 @@ user1 = User.create(first_name: "Bob", last_name: "Ingles", password: "password"
 user10 = User.create(first_name: "Byron", last_name: "Wall", password: "password", email: "byronssupersweetdevacct@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
 user11 = User.create(first_name: "Tori", last_name: "Hedden", password: "password", email: "tori.hedden@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
 user12 = User.create(first_name: "Mike", last_name: "Crane", password: "password", email: "mike.c0321@gmail.com", organization: "foodstream", description: "Front End Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
-user13 = User.create(first_name: "Marcia", last_name: "Corprew", password: "password", email: "mcorprew@gmail.com", organization: "foodstream", description: "Rails Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verification_key: "abcdef")
+user13 = User.create(first_name: "Marcia", last_name: "Corprew", password: "password", email: "mcorprew@gmail.com", organization: "foodstream", description: "Rails Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
 user14 = User.create(first_name: "Molly", last_name: "Gehring", password: "password", email: "gehring.mg@gmail.com", organization: "foodstream", description: "Rails Wizard", latitude: "35.993008", longitude: "-78.904495", address_string: "The Iron Yard", verified: true)
 
 
