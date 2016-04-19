@@ -1,3 +1,4 @@
 Message from foodstream
-<%= @body %>
-To reply to this message, go through the http://foodstrea.am application
+<%= @body.html_safe %>
+
+<%= @email_signature.html_safe %>

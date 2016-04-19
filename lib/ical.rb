@@ -1,4 +1,4 @@
-module IcalModule
+module Ical
   def create_ics_file(event_hash)
     @calendar = Icalendar::Calendar.new
     event = Icalendar::Event.new

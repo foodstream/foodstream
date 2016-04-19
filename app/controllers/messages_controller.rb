@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     if params[:email_type]
       email_type = params[:email_type]
     else
-      email_type = "chat_message"
+      email_type = EmailTemplate::CHAT_MESSAGE_TYPE
     end
 
     # generate email for recipient and save the message body for chat history
@@ -26,7 +26,6 @@ class MessagesController < ApplicationController
   end
 
   def send_confirmation
-
     # generate email for recipient and save the message body for chat history
     SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:email_type])
 

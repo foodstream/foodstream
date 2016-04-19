@@ -1,6 +1,9 @@
+require 'email_template'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in?, except: [:new, :create, :verify]
+
+  include EmailTemplate
 
   # GET /users
   # GET /users.json
@@ -27,9 +30,13 @@ class UsersController < ApplicationController
   # POST /users.json
 
   def create
+    byebug
+
     @user = User.new(user_params)
     if @user.save
-      redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Email verification for foodstream account", body: "#{@user.email} signed up. click http://localhost:3000/users/#{@user.generate_verification_key}/verify?email=#{@user.email} to verify your account.", email_type: "user_create"
+
+
+      redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: EmailTemplate::USER_CREATE_SUBJECT, body: "#{@user.email} signed up. click <a href='#{ENV["PWD"]}/users/#{@user.generate_verification_key}/verify?email=#{@user.email}'>here</a> to verify your account.", email_type: EmailTemplate::USER_CREATE_MESSAGE_TYPE
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -44,7 +51,7 @@ class UsersController < ApplicationController
       @user.destroy_verification_key
       @user.verified = true
       if @user.save
-        redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Your foodstream account has been verified!", body: "#{@user.email} has been verified", email_type: "verification_success"
+        redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Your foodstream account has been verified!", body: "#{@user.email} has been verified.", email_type: "verification_success"
       end
     else
       redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Your foodstream verification failed.", body: "Please recheck your verification link and try again.", email_type: "verification_failed"

@@ -1,7 +1,7 @@
 <h3>Message from foodstream</h3>
 
 <p>
-  <%= @body %>
+  <%= @body.html_safe %>
 </p>
 
 <h3><%= @email_signature %></h3>
