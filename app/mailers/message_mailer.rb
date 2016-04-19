@@ -4,7 +4,6 @@ include EmailTemplate
 
   def send_email(recipient, body, subject, email_type, file_name)
     # prepare for email send including file attachment as provided; file cleanup
-    byebug
     @body = body
     @email_signature = get_signature(email_type)
 

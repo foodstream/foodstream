@@ -30,13 +30,16 @@ class UsersController < ApplicationController
   # POST /users.json
 
   def create
-    byebug
 
     @user = User.new(user_params)
     if @user.save
 
-
-      redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: EmailTemplate::USER_CREATE_SUBJECT, body: "#{@user.email} signed up. click <a href='#{ENV["PWD"]}/users/#{@user.generate_verification_key}/verify?email=#{@user.email}'>here</a> to verify your account.", email_type: EmailTemplate::USER_CREATE_MESSAGE_TYPE
+      redirect_to controller: 'messages',
+                  action: 'send_confirmation',
+                  recipient: @user.email,
+                  subject: EmailTemplate::USER_CREATE_SUBJECT,
+                  body: "Click #{request.base_url}/users/#{@user.generate_verification_key}/verify?email=#{@user.email} to verify your account.",
+                  email_type: EmailTemplate::USER_CREATE_MESSAGE_TYPE
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -46,15 +49,27 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/verify/:token
   # PATCH/PUT /users/verify/token.json
   def verify
+    byebug
     @user = User.find_by(email: params[:email])
-    if @user && (@user.verification_key == params[:verification_key])
+
+    if @user && (@user.verification_key == params[:id])
       @user.destroy_verification_key
       @user.verified = true
       if @user.save
-        redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Your foodstream account has been verified!", body: "#{@user.email} has been verified.", email_type: "verification_success"
+        redirect_to controller: 'messages',
+                    action: 'send_confirmation',
+                    recipient: @user.email,
+                    subject: EmailTemplate::VERIFY_SUCCESS_SUBJECT,
+                    body: "#{@user.email} #{EmailTemplate::VERIFY_SUCCESS_BODY}",
+                    email_type: EmailTemplate::VERIFY_SUCCESS_MESSAGE_TYPE
       end
     else
-      redirect_to controller: 'messages', action: 'send_confirmation', recipient: @user.email, subject: "Your foodstream verification failed.", body: "Please recheck your verification link and try again.", email_type: "verification_failed"
+      redirect_to controller: 'messages',
+                  action: 'send_confirmation',
+                  recipient: @user.email,
+                  subject: EmailTemplate::VERIFY_FAILURE_SUBJECT,
+                  body: "#{@user.email} #{EmailTemplate::VERIFY_FAILURE_BODY}",
+                  email_type: EmailTemplate::VERIFY_FAILURE_MESSAGE_TYPE
 
     end
   end
@@ -62,9 +77,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if user_params["ratings_attributes"]
+    if user_params[:ratings_attributes]
       # @user.ratings.build
-      @user.ratings << Rating.new(rating: user_params["ratings_attributes"].first["rating"].to_i, reviewer_id: user_params["ratings_attributes"].first["reviewer_id"].to_i, reviewed_id: user_params["ratings_attributes"].first["reviewed_id"].to_i)
+      @user.ratings << Rating.new(rating: user_params[:ratings_attributes].first[:rating].to_i, reviewer_id: user_params[:ratings_attributes].first[:reviewer_id].to_i, reviewed_id: user_params[:ratings_attributes].first[:reviewed_id].to_i)
     end
 
     if @user.update(user_params)
