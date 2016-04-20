@@ -1,7 +1,7 @@
 <h3>Message from foodstream</h3>
 
 <p>
-  <%= @body %>
+  <%= @body.html_safe %>
 </p>
 
-<h3>To reply to this message, go through the <a href="http://foodstre.am">foodstream</a> application.
+<h3><%= @email_signature %></h3>

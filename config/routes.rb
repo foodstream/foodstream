@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
-  post 'messages/send_sms'
+  get 'messages' => 'messages#index'
   get 'messages/send_email'
   post 'messages/send_email'
+  get 'messages/send_confirmation'
   get 'posts/search' => 'posts#search'
   post 'posts/:id/send_ical' => 'posts#send_ical'
-  resources :users, :except => [:index]
+  # get 'users/:verification_key/verify' => 'users#verify'
+  # post 'users/:verification_key/verify' => 'users#verify'
+
+  resources :users do
+    member do
+      get 'verify'
+      post 'verify'
+    end
+  end
   resources :posts
+
 
   root 'sessions#login'
   get 'sessions/login'

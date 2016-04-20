@@ -1,6 +1,6 @@
-require 'ical_module'
+require 'ical'
 class PostsController < ApplicationController
-  include IcalModule
+  include Ical
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :send_ical]
   before_action :logged_in?
@@ -10,10 +10,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @user = User.find_by(token: params[:token])
-    @posts = Post.where(supplier_id: @user.id)
-    @claims = Post.where(claimant_id: @user.id)
-    @posts
-    @claims
+    @posts = Post.where('supplier_id = ? or claimant_id = ?', @user.id, @user.id)
   end
 
   # GET /posts/1
@@ -24,7 +21,6 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-
   end
 
   # GET /posts/1/edit
@@ -35,13 +31,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    image_link = ENV["S3_PATH"] + post_params[:image_link] if post_params[:image_link]
-
-    @post.image_link = image_link
     @post.supplier = @current_user
-
     if @post.save
-      render :show, status: :created, location: @post
+      render action: "show.json.jbuilder"
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -51,11 +43,8 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    image_link = ENV["S3_PATH"] + post_params[:image_link] if post_params[:image_link]
-
     if @post.update(post_params)
-      @post.update_attribute(:image_link, image_link)
-      render :action => :show
+      render action: "show.json.jbuilder"
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -82,8 +71,17 @@ class PostsController < ApplicationController
     event_hash = {dstart: @post.start_at, dtend: @post.end_at, summary: @post.title, description: @post.details, location: @post.address_string, file_name: file_name}
 
     if create_ics_file(event_hash)
-      recipient_email = User.find(@post.claimant_id).email
-      redirect_to controller: 'messages', action: 'send_email', recipient:recipient_email, subject:"Your requested foodstream calendar event", body:"#{@post.title} event info attached", file_name:file_name, post_id:@post.id
+      recipient_email = User.find(@current_user.id).email
+      redirect_to controller: 'messages',
+                  action: 'send_email',
+                  recipient: recipient_email,
+                  subject: EmailTemplate::ICAL_SUBJECT,
+                  body: "#{@post.title} #{EmailTemplate::ICAL_BODY}" ,
+                  file_name: file_name,
+                  post_id: @post.id,
+                  sender_id: @current_user.id,
+                  email_type: EmailTemplate::ICAL_MESSAGE_TYPE,
+                  token: params[:token]
     else
       render json: "Ics file not created"
     end
@@ -98,6 +96,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :details, :start_at, :end_at, :supplier_id, :location_id, :claimed, :claimant_id, :completed, :latitude, :longitude, :address_string, :image_link)
+      params.require(:post).permit(:title, :details, :start_at, :end_at, :supplier_id, :claimed, :claimant_id, :completed, :latitude, :longitude, :address_string, :post_image)
     end
 end

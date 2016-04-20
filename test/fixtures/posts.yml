@@ -6,7 +6,6 @@ one:
   start_at: 2016-04-02 12:27:23
   end_at: 2016-04-02 12:27:23
   supplier_id: 1
-  location_id: 1
   claimed: false
   completed: false
   latitude: "35.99599080000001"
@@ -21,7 +20,6 @@ two:
   start_at: 2016-04-02 12:27:23
   end_at: 2016-04-02 12:27:23
   supplier_id: 1
-  location_id: 1
   claimed: false
   completed: false
   latitude: "35.99599080000001"

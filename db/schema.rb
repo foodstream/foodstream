@@ -11,35 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411185225) do
-
-  create_table "exchanges", force: :cascade do |t|
-    t.integer  "claimant_id"
-    t.integer  "post_id"
-    t.boolean  "completed"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.string   "nickname"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.decimal  "latitude",       precision: 12, scale: 7
-    t.decimal  "longitude",      precision: 12, scale: 7
-    t.string   "address_string"
-  end
+ActiveRecord::Schema.define(version: 20160419021752) do
 
   create_table "messages", force: :cascade do |t|
     t.integer  "post_id"
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "sender_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -48,16 +27,18 @@ ActiveRecord::Schema.define(version: 20160411185225) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.integer  "supplier_id"
-    t.integer  "location_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.boolean  "claimed"
     t.boolean  "completed"
     t.integer  "claimant_id"
-    t.decimal  "latitude",       precision: 12, scale: 7
-    t.decimal  "longitude",      precision: 12, scale: 7
+    t.decimal  "latitude",                precision: 12, scale: 7
+    t.decimal  "longitude",               precision: 12, scale: 7
     t.string   "address_string"
-    t.string   "image_link"
+    t.string   "post_image_file_name"
+    t.string   "post_image_content_type"
+    t.integer  "post_image_file_size"
+    t.datetime "post_image_updated_at"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -74,15 +55,19 @@ ActiveRecord::Schema.define(version: 20160411185225) do
     t.string   "password_digest"
     t.string   "email"
     t.string   "organization"
-    t.integer  "location_id"
     t.text     "description"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
     t.string   "token"
-    t.decimal  "latitude",        precision: 12, scale: 7
-    t.decimal  "longitude",       precision: 12, scale: 7
+    t.decimal  "latitude",                   precision: 12, scale: 7
+    t.decimal  "longitude",                  precision: 12, scale: 7
     t.string   "address_string"
-    t.string   "image_link"
+    t.string   "profile_image_file_name"
+    t.string   "profile_image_content_type"
+    t.integer  "profile_image_file_size"
+    t.datetime "profile_image_updated_at"
+    t.boolean  "verified",                                            default: false
+    t.string   "verification_key"
   end
 
 end

@@ -48,6 +48,15 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :debug
 
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mailgun.org',
+    port:                 25,
+    domain:               ENV["MAILGUN_SANDBOX_DOMAIN"],
+    user_name:            'postmaster@' + ENV["MAILGUN_SANDBOX_DOMAIN"],
+    password:             ENV["MAILGUN_SANDBOX_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 

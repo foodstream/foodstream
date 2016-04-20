@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def login
     user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
+    if user && user.verified && user.authenticate(params[:password])
       user.generate_token
       render json: user
     else
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       user.destroy_token
       @current_user = nil
     end
-    
+
   end
 
   def reset_password

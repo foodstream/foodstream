@@ -6,7 +6,6 @@ one:
   password_digest: MyString
   email: MyString
   organization: MyString
-  location_id: 1
   description: MyText
 
 two:
@@ -15,5 +14,4 @@ two:
   password_digest: MyString
   email: MyString
   organization: MyString
-  location_id: 1
   description: MyText
