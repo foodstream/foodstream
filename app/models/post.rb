@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   belongs_to :supplier, class_name: "User", foreign_key: "supplier_id"
   belongs_to :claimant, class_name: "User", foreign_key: "claimant_id"
   has_one :exchange
-  has_attached_file :post_image
+  has_attached_file :post_image, s3_protocol: :https
   validates_attachment_content_type :post_image, content_type: /\Aimage\/.*\Z/
 
   acts_as_mappable :default_units => :miles,

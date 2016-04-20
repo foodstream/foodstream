@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :ratings, class_name: "Rating", foreign_key: "reviewed_id"
   accepts_nested_attributes_for :ratings, allow_destroy: true
 
-  has_attached_file :profile_image
+  has_attached_file :profile_image, s3_protocol: :https
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
 
   has_secure_password
