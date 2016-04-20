@@ -1,4 +1,6 @@
-# foodstream API
+# foodstream API ![alt text](./public/18220030.png "We believe edible food should be eaten")
+
+##### We believe edible food should be eaten
 
 ## Overview
 
