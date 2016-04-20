@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def login
-    user = User.find_by_email(params[:email])
+    user = User.find_by_email(params[:email].downcase)
     if user && user.verified && user.authenticate(params[:password])
       user.generate_token
       render json: user
