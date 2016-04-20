@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417145345) do
+ActiveRecord::Schema.define(version: 20160419021752) do
 
   create_table "messages", force: :cascade do |t|
     t.integer  "post_id"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20160417145345) do
     t.string   "email"
     t.string   "organization"
     t.text     "description"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
     t.string   "token"
     t.decimal  "latitude",                   precision: 12, scale: 7
     t.decimal  "longitude",                  precision: 12, scale: 7
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20160417145345) do
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
+    t.boolean  "verified",                                            default: false
+    t.string   "verification_key"
   end
 
 end

@@ -1,20 +1,33 @@
-# foodstream API
+# foodstream API ![alt text](./public/18220030.png "We believe edible food should be eaten")
+
+##### We believe edible food should be eaten
 
 ## Overview
 
-foodstream API serves as the back-end for the foodstream app. The app was developed primarily for institutional user who have excess, edible but unmarketable food. Users can post food  
+foodstream API serves as the back-end for the foodstream app which can be used on both mobile and desktop environments.
+
+The app was developed primarily for institutional user who have excess, edible but unmarketable food. Users can post food  
 
 ## Usage
-*Please visit foodstre.am to sign up for an account*
-
-## API Documentation
+#### Visit [foodstre.am](http://foodstre.am) to sign up and see it in action.
 
 ## Features
 
-* Users have the ability to post a lot of food with a specified pick-up time and an uploaded image.
-* Users can also search for and claim food that has been posted by other users.
-* Post claimants and suppliers can send messages to one another via the chat feature.
-* Users can search for food within a certain radius of their current location.
-* Google maps integration provides directions to the location of the post.
-* iCal integration allows users to create calendar events based on the post they have claimed.
-* Food suppliers can rate claimants based on their reliability.
+Users have the ability to...
+
+* Post available food with a specified pick-up time and an uploaded image.
+* Search for and claim food that has been posted by other users.
+* Chat within application about posts.
+* Narrow searches within a certain radius of their current location.
+* Access directions via Google maps integration.
+* Create calendar events via iCal integration for posts claimed.
+* Rate claimants based on their reliability.
+
+## Let's get technical
+
+* API interaction with a native IOS Angular front-end
+* Photos upload to Amazon Web Services' [S3](https://aws.amazon.com/s3/) via [Paperclip](https://github.com/thoughtbot/paperclip)
+* E-mail delivery via Rails' mailer
+* Generate iCal files using [iCalendar](https://github.com/icalendar/icalendar)
+* Calculate distances using [GeoKit](https://github.com/geokit/geokit)
+* Hosted on [Heroku](http://heroku.com)

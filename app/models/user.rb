@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates_uniqueness_of :token, :allow_blank => true, :allow_nil => true
 
   before_save :generate_token
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :ratings, class_name: "Rating", foreign_key: "reviewed_id"
   accepts_nested_attributes_for :ratings, allow_destroy: true
 
-  has_attached_file :profile_image
+  has_attached_file :profile_image, s3_protocol: :https
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
 
   has_secure_password
@@ -23,6 +23,15 @@ class User < ActiveRecord::Base
 
   def destroy_token
     update_attribute(:token, nil)
+  end
+
+  def generate_verification_key
+    update_attribute(:verification_key, SecureRandom.hex) if !verification_key
+    verification_key
+  end
+
+  def destroy_verification_key
+    update_attribute(:verification_key, nil)
   end
 
   def average_rating

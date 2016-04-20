@@ -25,7 +25,7 @@ module Foodstream
 
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
-        origins 'https:foodstrea.am', 'https://sheltered-wildwood-38449.herokuapp.com', 'localhost:3000' #replace * with front end address eventually
+        origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :patch, :put, :delete, :options]
       end
     end
@@ -40,5 +40,7 @@ module Foodstream
         :secret_access_key => ENV['IMAGE_BASE']
       }
     }
+
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

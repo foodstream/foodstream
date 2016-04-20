@@ -1,8 +1,10 @@
 require 'email_template'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in?, except: [:new, :create]
+  before_action :logged_in?, except: [:new, :create, :verify]
+
   include EmailTemplate
+
   # GET /users
   # GET /users.json
   def index
@@ -31,20 +33,55 @@ class UsersController < ApplicationController
   # POST /users.json
 
   def create
+
     @user = User.new(user_params)
     if @user.save
-      redirect_to controller: 'messages', action: 'send_email', recipient: @user.email, subject: EmailTemplate::USER_CREATE_SUBJECT, body: "#{@user.email} #{EmailTemplate::USER_CREATE_BODY}", email_type: EmailTemplate::USER_CREATE_MESSAGE_TYPE
+
+      redirect_to controller: 'messages',
+                  action: 'send_confirmation',
+                  recipient: @user.email,
+                  subject: EmailTemplate::USER_CREATE_SUBJECT,
+                  body: "Click #{request.base_url}/users/#{@user.generate_verification_key}/verify?email=#{@user.email} to verify your account.",
+                  email_type: EmailTemplate::USER_CREATE_MESSAGE_TYPE
     else
       render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+
+  # PATCH/PUT /users/verify/:token
+  # PATCH/PUT /users/verify/token.json
+  def verify
+    @user = User.find_by(email: params[:email])
+
+    if @user && (@user.verification_key == params[:id])
+      @user.destroy_verification_key
+      @user.verified = true
+      if @user.save
+        redirect_to controller: 'messages',
+                    action: 'send_confirmation',
+                    recipient: @user.email,
+                    subject: EmailTemplate::VERIFY_SUCCESS_SUBJECT,
+                    body: "#{@user.email} #{EmailTemplate::VERIFY_SUCCESS_BODY}",
+                    email_type: EmailTemplate::VERIFY_SUCCESS_MESSAGE_TYPE
+      end
+    else
+      redirect_to controller: 'messages',
+                  action: 'send_confirmation',
+                  recipient: @user.email,
+                  subject: EmailTemplate::VERIFY_FAILURE_SUBJECT,
+                  body: "#{@user.email} #{EmailTemplate::VERIFY_FAILURE_BODY}",
+                  email_type: EmailTemplate::VERIFY_FAILURE_MESSAGE_TYPE
+
     end
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if user_params["ratings_attributes"]
+    if user_params[:ratings_attributes]
       # @user.ratings.build
-      @user.ratings << Rating.new(rating: user_params["ratings_attributes"].first["rating"].to_i, reviewer_id: user_params["ratings_attributes"].first["reviewer_id"].to_i, reviewed_id: user_params["ratings_attributes"].first["reviewed_id"].to_i)
+      @user.ratings << Rating.new(rating: user_params[:ratings_attributes].first[:rating].to_i, reviewer_id: user_params[:ratings_attributes].first[:reviewer_id].to_i, reviewed_id: user_params[:ratings_attributes].first[:reviewed_id].to_i)
     end
 
     if @user.update(user_params)
@@ -54,7 +91,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+
+
+    # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user.destroy
