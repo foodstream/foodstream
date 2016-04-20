@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'landing/landing'
+
   get 'messages' => 'messages#index'
   get 'messages/send_email'
   post 'messages/send_email'
