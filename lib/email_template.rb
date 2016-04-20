@@ -1,6 +1,7 @@
 module EmailTemplate
-  USER_CREATE_SIGNATURE = 'Login to your account <a href="http://foodstre.am">here</a>.'.html_safe
+  BLANK_SIGNATURE = ""
   CHAT_SIGNATURE = "To reply to this message, go through the <a href=\'http://foodstre.am\'>foodstream</a> application.".html_safe
+  VERIFY_SUCCESS_SIGNATURE = 'Login to your account <a href="http://foodstre.am">here</a>.'.html_safe
   DEFAULT_SIGNATURE = "Start reducing food waste at <a href='http://foodstre.am'>foodstream</a>.".html_safe
 
   USER_CREATE_SUBJECT = "Now let's verify your foodstream account"
@@ -22,8 +23,10 @@ module EmailTemplate
   def get_signature(email_type)
     if email_type == CHAT_MESSAGE_TYPE
       CHAT_SIGNATURE
-    elsif email_type == USER_CREATE_MESSAGE_TYPE
-      USER_CREATE_SIGNATURE
+    elsif email_type == USER_CREATE_MESSAGE_TYPE || email_type == VERIFY_FAILURE_MESSAGE_TYPE
+      BLANK_SIGNATURE
+    elsif email_type == VERIFY_SUCCESS_MESSAGE_TYPE
+      VERIFY_SUCCESS_SIGNATURE
     else
       DEFAULT_SIGNATURE
     end
