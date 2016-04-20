@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates_uniqueness_of :token, :allow_blank => true, :allow_nil => true
 
   before_save :generate_token

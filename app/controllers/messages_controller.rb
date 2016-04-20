@@ -29,7 +29,6 @@ class MessagesController < ApplicationController
     # generate email for recipient and save the message body for chat history
     SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:email_type])
 
-    render json: "Your email has been sent."
   end
 
 
