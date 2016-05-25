@@ -1,4 +1,7 @@
 class MessagesController < ApplicationController
+
+  include EmailTemplate
+
   before_action :logged_in?, except: [:send_confirmation]
 
   def index
@@ -7,11 +10,11 @@ class MessagesController < ApplicationController
   end
 
   def send_email
-    email_type = ""
+    email_type = nil
     if params[:email_type]
       email_type = params[:email_type]
     else
-      email_type = EmailTemplate::CHAT_MESSAGE_TYPE
+      email_type = :CHAT_MESSAGE_TYPE
     end
 
     # generate email for recipient and save the message body for chat history
@@ -28,8 +31,8 @@ class MessagesController < ApplicationController
   def send_confirmation
     # generate email for recipient and save the message body for chat history
     SendEmailJob.perform_now(params[:recipient], params[:body], params[:subject], params[:email_type])
-
-    render :json => { :message => "Success!" } 
+    
+    render :json => { :message => "Success!" }
   end
 
 

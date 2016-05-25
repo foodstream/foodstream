@@ -30,16 +30,15 @@ class UsersController < ApplicationController
   # POST /users.json
 
   def create
-
     @user = User.new(user_params)
     if @user.save
 
       redirect_to controller: 'messages',
                   action: 'send_confirmation',
                   recipient: @user.email,
-                  subject: EmailTemplate::USER_CREATE_SUBJECT,
+                  subject: EMAIL_VALUES[:USER_CREATE_MESSAGE_TYPE][:SUBJECT],
                   body: "Click #{request.base_url}/users/#{@user.generate_verification_key}/verify?email=#{@user.email} to verify your account.",
-                  email_type: EmailTemplate::USER_CREATE_MESSAGE_TYPE
+                  email_type: :USER_CREATE_MESSAGE_TYPE
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -58,17 +57,17 @@ class UsersController < ApplicationController
         redirect_to controller: 'messages',
                     action: 'send_confirmation',
                     recipient: @user.email,
-                    subject: EmailTemplate::VERIFY_SUCCESS_SUBJECT,
-                    body: "#{@user.email} #{EmailTemplate::VERIFY_SUCCESS_BODY}",
-                    email_type: EmailTemplate::VERIFY_SUCCESS_MESSAGE_TYPE
+                    subject: EMAIL_VALUES[:VERIFY_SUCCESS_MESSAGE_TYPE][:SUBJECT],
+                    body: "#{@user.email} #{EMAIL_VALUES[:VERIFY_SUCCESS_MESSAGE_TYPE][:BODY]}",
+                    email_type: :VERIFY_SUCCESS_MESSAGE_TYPE
       end
     else
       redirect_to controller: 'messages',
                   action: 'send_confirmation',
                   recipient: @user.email,
-                  subject: EmailTemplate::VERIFY_FAILURE_SUBJECT,
-                  body: "#{@user.email} #{EmailTemplate::VERIFY_FAILURE_BODY}",
-                  email_type: EmailTemplate::VERIFY_FAILURE_MESSAGE_TYPE
+                  subject: EMAIL_VALUES[:VERIFY_FAILURE_MESSAGE_TYPE][:SUBJECT],
+                  body: "#{@user.email} #{EMAIL_VALUES[:VERIFY_FAILURE_MESSAGE_TYPE][:BODY]}",
+                  email_type: :VERIFY_FAILURE_MESSAGE_TYPE
 
     end
   end
@@ -77,7 +76,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if user_params[:ratings_attributes]
-      # @user.ratings.build
       @user.ratings << Rating.new(rating: user_params[:ratings_attributes].first[:rating].to_i, reviewer_id: user_params[:ratings_attributes].first[:reviewer_id].to_i, reviewed_id: user_params[:ratings_attributes].first[:reviewed_id].to_i)
     end
 
@@ -87,8 +85,6 @@ class UsersController < ApplicationController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-
-
 
     # DELETE /users/1
   # DELETE /users/1.json
