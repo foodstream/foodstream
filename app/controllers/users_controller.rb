@@ -62,7 +62,6 @@ class UsersController < ApplicationController
                     email_type: :VERIFY_SUCCESS_MESSAGE_TYPE
       end
     else
-      byebug
       redirect_to controller: 'messages',
                   action: 'send_confirmation',
                   recipient: @user.email,
